@@ -1,0 +1,64 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk deps.app.compileSdkVersion
+
+    defaultConfig {
+        minSdk deps.app.minSdkVersion
+        targetSdk deps.app.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    api deps.androidx.core_ktx
+    api deps.androidx.appcompat
+    api deps.androidx.constraintLayoutVersion
+    api deps.androidx.fragment_ktx
+    api deps.androidx.activity_ktx
+    api deps.androidx.constraintlayout
+    api deps.androidx.recyclerview
+
+    api deps.material.material
+
+    api deps.lifecycle.lifecycle_viewmodel_ktx
+    api deps.lifecycle.lifecycle_viewmodel_savedstate
+
+    api deps.room.room_runtime
+    api deps.room.room_ktx
+    kapt deps.room.room_compiler
+
+    api deps.coroutines.kotlinx_coroutines_core
+    api deps.coroutines.kotlinx_coroutines_android
+
+    api deps.navigation.navigation_fragment_ktx
+    api deps.navigation.navigation_ui_ktx
+
+    api deps.glide.glide
+    kapt deps.glide.glide_compiler
+
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.ext_junit
+    androidTestImplementation deps.test.espresso_core
+
+}
